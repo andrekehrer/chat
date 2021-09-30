@@ -20,7 +20,7 @@ let = msgs = [];
 io.on("connection", (socket) => {
   console.log(`socket connectado: ${socket.id}`);
 
-  socket.emit("prevMsg", msgs);
+  // socket.emit("prevMsg", msgs);
 
   socket.on("sendMessage", (data) => {
     msgs.push(data);

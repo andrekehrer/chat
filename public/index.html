@@ -31,11 +31,11 @@
             "</div>"
         );
       }
-      socket.on("prevMsg", function (msgs_) {
-        for (msg_ of msgs_) {
-          renderMsg(msg_);
-        }
-      });
+      // socket.on("prevMsg", function (msgs_) {
+      //   for (msg_ of msgs_) {
+      //     renderMsg(msg_);
+      //   }
+      // });
       socket.on("receivedMsg", function (msg) {
         renderMsg(msg);
       });
