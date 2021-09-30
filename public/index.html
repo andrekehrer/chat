@@ -53,6 +53,7 @@
           };
           renderMsg(msgObject);
           socket.emit("sendMessage", msgObject);
+          $("input[name=message]").html("");
         }
       });
     </script>
