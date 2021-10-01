@@ -11,7 +11,7 @@
   </head>
   <body>
     <form id="chat">
-      <input type="text" name="nome" placeholder="Digite seu nome" />
+      <!-- <input type="text" name="nome" placeholder="Digite seu nome" /> -->
       <div class="messages"></div>
       <input type="text" name="message" placeholder="Digite sua mensagem" />
       <button type="submit">Enviar</button>
@@ -25,6 +25,24 @@
       let id_gene = Math.floor(
         Math.random() * (300000000000000 - 123 + 1) + 10
       );
+      let getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+          sURLVariables = sPageURL.split("&"),
+          sParameterName,
+          i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split("=");
+
+          if (sParameterName[0] === sParam) {
+            return typeof sParameterName[1] === undefined
+              ? true
+              : decodeURIComponent(sParameterName[1]);
+          }
+        }
+        return false;
+      };
+      var nome = getUrlParameter("nome");
       function renderMsg(msg) {
         console.log(msg.id);
         if (msg.id === id_gene) {
@@ -54,7 +72,7 @@
       $("#chat").submit(function (event) {
         event.preventDefault();
 
-        var aut = $("input[name=nome]").val();
+        var aut = nome;
         var msg = $("input[name=message]").val();
 
         if (aut.length && msg.length) {
