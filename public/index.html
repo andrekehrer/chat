@@ -43,6 +43,9 @@
         return false;
       };
       var nome = getUrlParameter("nome");
+      if (!nome) {
+        nome = "Anonimo";
+      }
       function renderMsg(msg) {
         console.log(msg.id);
         if (msg.id === id_gene) {
