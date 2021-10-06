@@ -65,19 +65,38 @@ function outputMessage(message) {
   if (message.gest === "1") {
     div.classList.add("amarelo");
   }
-  const divimg = document.createElement("div");
-  divimg.classList.add("img");
+  // const divimg = document.createElement("div");
+  // divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="20" height="20">`;
   // https://icon-library.com/images/bot-icon/bot-icon-12.jpg
+  // document.querySelector(".chat-messages").appendChild(divimg);
+
+  if (message.id !== id_gene) {
+    const divimg = document.createElement("div");
+    divimg.classList.add("img");
+    divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+    div.appendChild(divimg);
+  }
+
   const p = document.createElement("p");
   p.classList.add("meta");
-  p.innerText = message.username;
+  // p.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="20" height="20">`;
+  p.innerText += message.username;
   p.innerHTML += `<span>${message.time}</span>`;
   div.appendChild(p);
+  
   const para = document.createElement("p");
   para.classList.add("text");
   para.innerText = message.text;
   div.appendChild(para);
   document.querySelector(".chat-messages").appendChild(div);
+
+  if (message.id === id_gene) {
+    const divimg = document.createElement("div");
+    divimg.classList.add("img_r");
+    divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+    div.appendChild(divimg);
+  }
+
 }
 
 // Add room name to DOM
