@@ -56,7 +56,13 @@ chatForm.addEventListener("submit", (e) => {
 
 // Output message to DOM
 function outputMessage(message) {
-    console.log('MSG.GEST'+message.gest);
+  let img_url = '';
+    console.log(message.id);
+    if (message.id){
+      img_url = `<img src="https://www.wydawnictwoliteratura.pl/pub/skin/wyd-skin/img/avatar.png" width="50" height="50">`;
+    }else{
+      img_url = `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+    }
   const div = document.createElement("div");
   div.classList.add("message");
   if (message.id === id_gene) {
@@ -65,15 +71,11 @@ function outputMessage(message) {
   if (message.gest === "1") {
     div.classList.add("amarelo");
   }
-  // const divimg = document.createElement("div");
-  // divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="20" height="20">`;
-  // https://icon-library.com/images/bot-icon/bot-icon-12.jpg
-  // document.querySelector(".chat-messages").appendChild(divimg);
 
   if (message.id !== id_gene) {
     const divimg = document.createElement("div");
     divimg.classList.add("img");
-    divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+    divimg.innerHTML += img_url;
     div.appendChild(divimg);
   }
 
@@ -81,7 +83,7 @@ function outputMessage(message) {
   p.classList.add("meta");
   // p.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="20" height="20">`;
   p.innerText += message.username;
-  p.innerHTML += `<span> ${message.time} </span>`;
+  p.innerHTML += `<span class="span_data"> ${message.time} </span>`;
   div.appendChild(p);
 
   const para = document.createElement("p");
@@ -93,7 +95,7 @@ function outputMessage(message) {
   if (message.id === id_gene) {
     const divimg = document.createElement("div");
     divimg.classList.add("img_r");
-    divimg.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+    divimg.innerHTML += img_url;
     div.appendChild(divimg);
   }
 
