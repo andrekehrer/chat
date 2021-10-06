@@ -55,13 +55,13 @@ chatForm.addEventListener("submit", (e) => {
 
 // Output message to DOM
 function outputMessage(message) {
+    console.log('MSG.GEST'+message.gest);
   const div = document.createElement("div");
   div.classList.add("message");
   if (message.id === id_gene) {
     div.classList.add("direito");
   }
   if (message.gest === "1") {
-    console.log(message.gest);
     div.classList.add("amarelo");
   }
   const divimg = document.createElement("div");
