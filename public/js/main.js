@@ -10,6 +10,7 @@ const { username, room, gest } = Qs.parse(location.search, {
 
 const socket = io();
 let id_gene = Math.floor(Math.random() * (300000000000000 - 123 + 1) + 10);
+let gestor = gest;
 // Join chatroom
 socket.emit("joinRoom", { username, room, gest });
 
@@ -38,7 +39,7 @@ chatForm.addEventListener("submit", (e) => {
   var msg = {
     id: id_gene,
     msg: msg_.trim(),
-    gest: gest,
+    gest: gestor,
   };
 
   if (!msg_) {
