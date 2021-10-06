@@ -46,6 +46,7 @@ io.on("connection", (socket) => {
 
   // Listen for chatMessage
   socket.on("chatMessage", (msg) => {
+    console.log('INSIDE SERVER '+msg.gest);
     const user = getCurrentUser(socket.id);
 
     io.to(user.room).emit(
