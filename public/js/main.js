@@ -4,14 +4,14 @@ const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 
 // Get username and room from URL
-const { username, room } = Qs.parse(location.search, {
+const { username, room, gest } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
 const socket = io();
 let id_gene = Math.floor(Math.random() * (300000000000000 - 123 + 1) + 10);
 // Join chatroom
-socket.emit("joinRoom", { username, room });
+socket.emit("joinRoom", { username, room, gest });
 
 // Get room and users
 socket.on("roomUsers", ({ room, users }) => {
@@ -38,6 +38,7 @@ chatForm.addEventListener("submit", (e) => {
   var msg = {
     id: id_gene,
     msg: msg_.trim(),
+    gest: gest,
   };
 
   if (!msg_) {
@@ -58,6 +59,10 @@ function outputMessage(message) {
   div.classList.add("message");
   if (message.id === id_gene) {
     div.classList.add("direito");
+  }
+  if (message.gest === "1") {
+    console.log(message.gest);
+    div.classList.add("amarelo");
   }
   const divimg = document.createElement("div");
   divimg.classList.add("img");

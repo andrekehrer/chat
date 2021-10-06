@@ -21,8 +21,8 @@ const botName = "Training Analytics ";
 
 // Run when client connects
 io.on("connection", (socket) => {
-  socket.on("joinRoom", ({ username, room }) => {
-    const user = userJoin(socket.id, username, room);
+  socket.on("joinRoom", ({ username, room, gest }) => {
+    const user = userJoin(socket.id, username, room, gest);
 
     socket.join(user.room);
 
@@ -50,7 +50,7 @@ io.on("connection", (socket) => {
 
     io.to(user.room).emit(
       "message",
-      formatMessage(user.username, msg.msg, msg.id)
+      formatMessage(user.username, msg.msg, msg.id, msg.gest)
     );
   });
 
