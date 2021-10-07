@@ -1,4 +1,5 @@
 const chatForm = document.getElementById("chat-form");
+const count = document.getElementById("count");
 const chatMessages = document.querySelector(".chat-messages");
 const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
@@ -21,6 +22,8 @@ socket.on("roomUsers", ({ room, users }) => {
 });
 
  socket.on("prevMsg", function (msgs_) {
+  // let qtd = msgs_.length;
+  // console.log(qtd);
     for (msg_ of msgs_) {
       outputMessage(msg_);
     }
@@ -61,11 +64,9 @@ chatForm.addEventListener("submit", (e) => {
 });
 
 // Output message to DOM
-function outputMessage(message) {
-  console.log('msg ID '+message.id);
-  console.log('ID URL '+id_gene);
+function outputMessage(message) {  
+  // count.append(msg_atual);
   if(message.room == room){
-    let img_url = '';
       // console.log(message.id);
       if (message.id){
         img_url = `<img src="https://www.wydawnictwoliteratura.pl/pub/skin/wyd-skin/img/avatar.png" width="50" height="50">`;
