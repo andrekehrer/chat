@@ -28,12 +28,12 @@ io.on("connection", (socket) => {
     socket.join(user.room);
 
     // Welcome current user
-    socket.emit("message", formatMessage(botName, "Seja bem-vindo!"));
+    socket.emit("message", formatMessage(botName, "Seja bem-vindo!", 0, 0, user.room));
 
   
     // Broadcast when a user connects
     socket.broadcast.to(user.room).emit("message",
-        formatMessage(botName, `${user.username} entrou no chat.`)
+        formatMessage(botName, `${user.username} entrou no chat.`, 0, 0, user.room)
       );
 
    
@@ -51,10 +51,10 @@ io.on("connection", (socket) => {
   // Listen for chatMessage
   socket.on("chatMessage", (msg) => {
     const user = getCurrentUser(socket.id);
-    msgs.push(formatMessage(user.username, msg.msg, msg.id, msg.gest));
+    msgs.push(formatMessage(user.username, msg.msg, msg.id, msg.gest, user.room));
     io.to(user.room).emit(
       "message",
-      formatMessage(user.username, msg.msg, msg.id, msg.gest)
+      formatMessage(user.username, msg.msg, msg.id, msg.gest, user.room)
     );
   });
 
@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        formatMessage(botName, `${user.username} saiu do chat.`)
+        formatMessage(botName, `${user.username} saiu do chat.`, 0, 0, user.room)
       );
 
       // Send users and room info

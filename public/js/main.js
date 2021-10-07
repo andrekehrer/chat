@@ -62,52 +62,53 @@ chatForm.addEventListener("submit", (e) => {
 
 // Output message to DOM
 function outputMessage(message) {
-  let img_url = '';
-    // console.log(message.id);
-    if (message.id){
-      img_url = `<img src="https://www.wydawnictwoliteratura.pl/pub/skin/wyd-skin/img/avatar.png" width="50" height="50">`;
-    }else{
-      img_url = `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+  if(message.room == room){
+    let img_url = '';
+      // console.log(message.id);
+      if (message.id){
+        img_url = `<img src="https://www.wydawnictwoliteratura.pl/pub/skin/wyd-skin/img/avatar.png" width="50" height="50">`;
+      }else{
+        img_url = `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="50" height="50">`;
+      }
+    const div = document.createElement("div");
+    div.classList.add("message");
+    if (message.id === id_gene) {
+      div.classList.add("direito");
     }
-  const div = document.createElement("div");
-  div.classList.add("message");
-  if (message.id === id_gene) {
-    div.classList.add("direito");
-  }
-  if (message.gest === "1") {
-    div.classList.add("amarelo");
-  }
+    if (message.gest === "1") {
+      div.classList.add("amarelo");
+    }
 
-  if (message.id !== id_gene) {
-    const divimg = document.createElement("div");
-    divimg.classList.add("img");
-    divimg.innerHTML += img_url;
-    div.appendChild(divimg);
+    if (message.id !== id_gene) {
+      const divimg = document.createElement("div");
+      divimg.classList.add("img");
+      divimg.innerHTML += img_url;
+      div.appendChild(divimg);
+    }
+
+    const p = document.createElement("p");
+    p.classList.add("meta");
+    if (message.gest === "1") {
+      p.innerText += message.username + " (moderador)";
+    }else{
+      p.innerText += message.username;
+    }
+    p.innerHTML += `<span class="span_data"> ${message.time} </span>`;
+    div.appendChild(p);
+
+    const para = document.createElement("p");
+    para.classList.add("text");
+    para.innerText = message.text;
+    div.appendChild(para);
+    document.querySelector(".chat-messages").appendChild(div);
+
+    if (message.id === id_gene) {
+      const divimg = document.createElement("div");
+      divimg.classList.add("img_r");
+      divimg.innerHTML += img_url;
+      div.appendChild(divimg);
+    }
   }
-
-  const p = document.createElement("p");
-  p.classList.add("meta");
-  if (message.gest === "1") {
-    p.innerText += message.username + " (moderador)";
-  }else{
-    p.innerText += message.username;
-  }
-  p.innerHTML += `<span class="span_data"> ${message.time} </span>`;
-  div.appendChild(p);
-
-  const para = document.createElement("p");
-  para.classList.add("text");
-  para.innerText = message.text;
-  div.appendChild(para);
-  document.querySelector(".chat-messages").appendChild(div);
-
-  if (message.id === id_gene) {
-    const divimg = document.createElement("div");
-    divimg.classList.add("img_r");
-    divimg.innerHTML += img_url;
-    div.appendChild(divimg);
-  }
-
 }
 
 // Add room name to DOM
