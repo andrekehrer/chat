@@ -35,11 +35,11 @@ a {
 
 .btn {
   cursor: pointer;
-  padding: 10px 15px;
+  padding: 5px 11px;
   background: #323756;
   color: #ffffff;
   border: 0;
-  font-size: 17px;
+  font-size: 15px;
   margin: 5px;
 }
 
@@ -136,7 +136,7 @@ a {
 }
 
 .chat-form-container {
-  padding: 20px 30px;
+  padding: 25px 20px;
   background-color: #e6e6e6;
 }
 
@@ -145,12 +145,12 @@ a {
 }
 
 .chat-form-container input[type="text"] {
-  font-size: 16px;
-  padding: 22px 20px;
-  height: 40px;
-  flex: 1;
-  border: 1px #dadada solid;
-  margin: 3px;
+    font-size: 15px;
+    padding: 22px 20px;
+    height: 40px;
+    flex: 1;
+    border: 1px #dadada solid;
+    margin: 3px;
 }
 
 /* Join Page */
