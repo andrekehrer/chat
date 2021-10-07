@@ -13,6 +13,11 @@
   margin: 0;
   padding: 0;
 }
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 
 body {
   font-family: "Roboto", sans-serif;
@@ -46,6 +51,7 @@ a {
   margin: 0px;
   overflow: hidden;
   border: 14px #ccc solid;
+  height: 100%;
 }
 
 .chat-header {
@@ -63,6 +69,7 @@ a {
 
 .chat-main {
   display: grid;
+  height: 85%;
   /* grid-template-columns: 1fr 3fr; */
 }
 
@@ -90,7 +97,7 @@ a {
 
 .chat-messages {
   /* padding: 30px; */
-  max-height: 500px;
+  max-height: 100%;
   overflow-y: scroll;
 }
 

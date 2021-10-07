@@ -18,24 +18,25 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, "public")));
 
 const botName = "Training Analytics ";
-
+let = msgs = [];
 // Run when client connects
 io.on("connection", (socket) => {
+  
   socket.on("joinRoom", ({ username, room, gest }) => {
     const user = userJoin(socket.id, username, room, gest);
-
+    
     socket.join(user.room);
 
     // Welcome current user
     socket.emit("message", formatMessage(botName, "Seja bem-vindo!"));
 
+  
     // Broadcast when a user connects
-    socket.broadcast
-      .to(user.room)
-      .emit(
-        "message",
+    socket.broadcast.to(user.room).emit("message",
         formatMessage(botName, `${user.username} entrou no chat.`)
       );
+
+   
 
     // Send users and room info
     io.to(user.room).emit("roomUsers", {
@@ -43,11 +44,14 @@ io.on("connection", (socket) => {
       users: getRoomUsers(user.room),
     });
   });
+    
+  socket.emit("prevMsg", msgs);
+  
 
   // Listen for chatMessage
   socket.on("chatMessage", (msg) => {
     const user = getCurrentUser(socket.id);
-
+    msgs.push(formatMessage(user.username, msg.msg, msg.id, msg.gest));
     io.to(user.room).emit(
       "message",
       formatMessage(user.username, msg.msg, msg.id, msg.gest)

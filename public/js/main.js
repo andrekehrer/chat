@@ -20,9 +20,15 @@ socket.on("roomUsers", ({ room, users }) => {
   outputUsers(users);
 });
 
+ socket.on("prevMsg", function (msgs_) {
+    for (msg_ of msgs_) {
+      outputMessage(msg_);
+    }
+  });
+
 // Message from server
 socket.on("message", (message) => {
-  console.log(message);
+  // console.log(message);
   outputMessage(message);
 
   // Scroll down
@@ -57,7 +63,7 @@ chatForm.addEventListener("submit", (e) => {
 // Output message to DOM
 function outputMessage(message) {
   let img_url = '';
-    console.log(message.id);
+    // console.log(message.id);
     if (message.id){
       img_url = `<img src="https://www.wydawnictwoliteratura.pl/pub/skin/wyd-skin/img/avatar.png" width="50" height="50">`;
     }else{
@@ -81,8 +87,11 @@ function outputMessage(message) {
 
   const p = document.createElement("p");
   p.classList.add("meta");
-  // p.innerHTML += `<img src="https://icon-library.com/images/bot-icon/bot-icon-12.jpg" width="20" height="20">`;
-  p.innerText += message.username;
+  if (message.gest === "1") {
+    p.innerText += message.username + " (moderador)";
+  }else{
+    p.innerText += message.username;
+  }
   p.innerHTML += `<span class="span_data"> ${message.time} </span>`;
   div.appendChild(p);
 
