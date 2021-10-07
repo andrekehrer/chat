@@ -215,6 +215,13 @@ a {
   }
 }
 
+@media (max-height: 850px) {
+  .chat-main {
+    display: grid;
+    height: 77%;
+  }
+}
+
 .direito {
   background-color: #e6eff5 !important;
   text-align: right;

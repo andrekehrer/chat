@@ -52,6 +52,13 @@ io.on("connection", (socket) => {
   socket.on("chatMessage", (msg) => {
     const user = getCurrentUser(socket.id);
     msgs.push(formatMessage(user.username, msg.msg, msg.id, msg.gest, user.room));
+
+    var fs = require('fs');
+    fs.writeFile ("conversa"+user.room+".json", JSON.stringify(msgs), function(err) {
+    if (err) throw err;
+    console.log('complete');
+    });
+
     io.to(user.room).emit(
       "message",
       formatMessage(user.username, msg.msg, msg.id, msg.gest, user.room)
