@@ -4,12 +4,12 @@ const roomName = document.getElementById("room-name");
 const userList = document.getElementById("users");
 
 // Get username and room from URL
-const { username, room, gest } = Qs.parse(location.search, {
+const { username, room, gest, iduser } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
 const socket = io();
-let id_gene = Math.floor(Math.random() * (300000000000000 - 123 + 1) + 10);
+let id_gene = iduser;
 let gestor = gest;
 // Join chatroom
 socket.emit("joinRoom", { username, room, gest });
@@ -62,6 +62,8 @@ chatForm.addEventListener("submit", (e) => {
 
 // Output message to DOM
 function outputMessage(message) {
+  console.log('msg ID '+message.id);
+  console.log('ID URL '+id_gene);
   if(message.room == room){
     let img_url = '';
       // console.log(message.id);
@@ -127,10 +129,10 @@ function outputUsers(users) {
 }
 
 //Prompt the user before leave chat room
-document.getElementById("leave-btn").addEventListener("click", () => {
-  const leaveRoom = confirm("Certeza que deseja sair?");
-  if (leaveRoom) {
-    // window.location = "../index.html";
-  } else {
-  }
-});
+// document.getElementById("leave-btn").addEventListener("click", () => {
+//   const leaveRoom = confirm("Certeza que deseja sair?");
+//   if (leaveRoom) {
+//     // window.location = "../index.html";
+//   } else {
+//   }
+// });
