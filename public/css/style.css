@@ -34,13 +34,13 @@ a {
 }
 
 .btn {
-  cursor: pointer;
-  padding: 5px 11px;
-  background: #323756;
-  color: #ffffff;
-  border: 0;
-  font-size: 15px;
-  margin: 5px;
+    cursor: pointer;
+    padding: 5px 11px;
+    background: #323756;
+    color: #ffffff;
+    border: 0;
+    font-size: 15px;
+    margin-left: 10px;
 }
 
 /* Chat Page */
@@ -69,7 +69,7 @@ a {
 
 .chat-main {
   display: grid;
-  height: 85%;
+  height: 75%;
   /* grid-template-columns: 1fr 3fr; */
 }
 

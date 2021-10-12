@@ -9,7 +9,13 @@
       integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
       crossorigin="anonymous"
     />
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+    <script src="js/emojionearea.min.js"></script>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/emojionearea.min.css" />
     <title>Webinar App</title>
   </head>
   <body>
@@ -33,18 +39,17 @@
       </main>
       <div class="chat-form-container">
         <form id="chat-form">
-          <input
+          <textarea 
             id="msg"
             type="text"
             placeholder="Escrever mensagem"
             required
-            autocomplete="off"
-          />
+            autocomplete="off"></textarea>
           <button class="btn"><i class="fas fa-paper-plane"></i> Enviar</button>
         </form>
       </div>
     </div>
-
+    
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
       integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
@@ -52,5 +57,10 @@
     ></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="js/main.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#msg").emojioneArea();
+      });
+    </script>
   </body>
 </html>
